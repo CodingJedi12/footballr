@@ -4,10 +4,10 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Home page")
+    return render(request, 'home.html')
 
 def about(request):
-    return HttpResponse("About page")
+    return render(request, 'about.html')
 
 def my_teams(request):
     return HttpResponse("My Teams Page")
