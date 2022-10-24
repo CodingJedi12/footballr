@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Team Details</h1>
+
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ team.name }}</span>
+                <p>{{ team.league }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
