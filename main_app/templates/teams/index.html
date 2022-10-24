@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Your Teams</h1>
+
+{% for team in teams %}
+<div class="card">
+    <a href="{% url 'home' %}">
+        <div class="card-content">
+            <span class="card-title">{{ team.name }}</span>
+            <p>League: {{ team.league }}</p>
+        </div>
+    </a>
+</div>
+{% endfor %}{% endblock %}

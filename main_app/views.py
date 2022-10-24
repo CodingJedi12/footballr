@@ -1,6 +1,7 @@
-from curses.ascii import HT
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
+
+from .models import Team
 
 # Create your views here.
 def home(request):
@@ -10,4 +11,5 @@ def about(request):
     return render(request, 'about.html')
 
 def my_teams(request):
-    return HttpResponse("My Teams Page")
+    teams = Team.objects.all()
+    return render(request, 'teams/index.html', {'teams': teams})
