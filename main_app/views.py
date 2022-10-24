@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Team
 
@@ -31,4 +31,12 @@ def teams_detail(request, team_id):
 class TeamCreate(CreateView):
     model = Team
     fields = '__all__'
+    success_url = '/myteams/'
+
+class TeamUpdate(UpdateView):
+    model = Team
+    fields = '__all__'
+
+class TeamDelete(DeleteView):
+    model = Team
     success_url = '/myteams/'
