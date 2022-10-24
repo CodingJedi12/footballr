@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from django.views.generic.edit import CreateView
 
 from .models import Team
 
@@ -26,3 +27,8 @@ def teams_detail(request, team_id):
 
     # Renders the request, the detail template and passes the team variable through
     return render(request, 'teams/detail.html', {'team': team})
+
+class TeamCreate(CreateView):
+    model = Team
+    fields = '__all__'
+    success_url = '/myteams/'
