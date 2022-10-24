@@ -9,5 +9,5 @@ urlpatterns = [
     path('myteams/<int:team_id>/', views.teams_detail, name='detail'),
     path('myteams/create/', views.TeamCreate.as_view(), name='teams_create'),
     path('myteams/<int:pk>/update/', views.TeamUpdate.as_view(), name='teams_update'),
-    path('myteams/<int:pk>/update/', views.TeamDelete.as_view(), name='teams_delete'),
+    path('myteams/<int:pk>/delete/', views.TeamDelete.as_view(), name='teams_delete'),
 ]
