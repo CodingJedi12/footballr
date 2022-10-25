@@ -24,13 +24,17 @@ def teams_index(request):
 
 # Renders the team detail (show) page by connecting to the template
 def teams_detail(request, team_id):
-    # Assings the team variable to a specific id in the Team model object that is passed as an argument
+    # Creates a win and loss variable to be used
     wins = 0
     losses = 0
+    # Assings the team variable to a specific id in the Team model object that is passed as an argument
     team = Team.objects.get(id=team_id)
+    # Attaches a variable to the record model and its objects
     records = Record.objects.all()
+    # Allows for us to use the form in our detail template
     record_form = RecordForm()
 
+    # Goes through the records for the team and tallies wins and losses
     for record in records:
         if record.team_id == team.id:
             if record.result == "W":
@@ -47,22 +51,27 @@ def teams_detail(request, team_id):
         })
 
 def add_game(request, team_id):
+    # Sets form equal to the post request of a completed game form
     form = RecordForm(request.POST)
+    # If the form is valid, we save it, set the id equal to the orignating id and then save it
     if form.is_valid():
         new_game = form.save(commit=False)
         new_game.team_id = team_id
         new_game.save()
     return redirect('detail', team_id=team_id)
 
+# Creates a new team using the Team model and reroutes upon success
 class TeamCreate(CreateView):
     model = Team
     fields = '__all__'
     success_url = '/myteams/'
 
+# Updates an existing team
 class TeamUpdate(UpdateView):
     model = Team
     fields = '__all__'
 
+# Deletes an existing team and reroutes upon success
 class TeamDelete(DeleteView):
     model = Team
     success_url = '/myteams/'
