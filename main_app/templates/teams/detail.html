@@ -16,6 +16,10 @@
         </div>
     </div>
     <div class="col s6">
+        <form action="{% url 'add_game' team.id %}" method="post">
+            {% csrf_token %} {{ record_form.as_p }}
+            <input type="submit" class="btn" value="Add game">
+        </form>
         <table class="striped">
           <thead>
             <tr>
@@ -23,7 +27,7 @@
             </tr>
             <tr>
               <th>Week</th>
-              <th>Result</th>
+              <th>Win/Loss</th>
             </tr>
           </thead>
           <tbody>
@@ -37,5 +41,10 @@
         </table>
       </div>
 </div>
+
+<script>
+    var selectEl = document.getElementById('id_result');
+    M.FormSelect.init(selectEl);
+</script>
 
 {% endblock %}

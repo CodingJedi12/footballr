@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+from .forms import RecordForm
+
 from .models import Record, Team
 
 # Create your views here.
@@ -27,6 +29,7 @@ def teams_detail(request, team_id):
     losses = 0
     team = Team.objects.get(id=team_id)
     records = Record.objects.all()
+    record_form = RecordForm()
 
     for record in records:
         if record.team_id == team.id:
@@ -40,7 +43,16 @@ def teams_detail(request, team_id):
         'team': team,
         'wins': wins,
         'losses': losses,
+        'record_form': record_form,
         })
+
+def add_game(request, team_id):
+    form = RecordForm(request.POST)
+    if form.is_valid():
+        new_game = form.save(commit=False)
+        new_game.team_id = team_id
+        new_game.save()
+    return redirect('detail', team_id=team_id)
 
 class TeamCreate(CreateView):
     model = Team
