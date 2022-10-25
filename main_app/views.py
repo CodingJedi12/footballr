@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 from .forms import RecordForm
 
@@ -71,6 +73,13 @@ class TeamCreate(CreateView):
     fields = ('name', 'league')
     success_url = '/myteams/'
 
+    # If Valid Team form is received on submission
+    def form_valid(self, form):
+        # Assign the logged in user (self.request.user)
+        form.instance.user = self.request.user
+        # Let the CreateView behave normally
+        return super().form_valid(form)
+
 # Updates an existing team
 class TeamUpdate(UpdateView):
     model = Team
@@ -110,3 +119,19 @@ class PlayerList(ListView):
 class PlayerDetail(DetailView):
     model = Player
     template_name = 'players/detail.html'
+
+# Signup view
+def signup(request):
+    error_message = ''
+    if request.method == 'post':
+        # This is how we create a 'user' form object that allows us to use data from the browser
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)
