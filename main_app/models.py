@@ -28,11 +28,11 @@ class Record(models.Model):
         default=RESULTS[0][0],
         )
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
-
+    
     # Makes it say its name
     def __str__(self):
         return f"{self.get_result_display()} on Week {self.week}"
 
     # Changes the default sort
     class Meta:
-        ordering = ['-week']
+        ordering = ['week']

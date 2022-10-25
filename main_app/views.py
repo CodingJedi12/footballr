@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from .models import Team
+from .models import Record, Team
 
 # Create your views here.
 # Renders the home page by connecting to the home.html template
@@ -23,10 +23,24 @@ def teams_index(request):
 # Renders the team detail (show) page by connecting to the template
 def teams_detail(request, team_id):
     # Assings the team variable to a specific id in the Team model object that is passed as an argument
+    wins = 0
+    losses = 0
     team = Team.objects.get(id=team_id)
+    records = Record.objects.all()
 
+    for record in records:
+        if record.team_id == team.id:
+            if record.result == "W":
+                wins += 1
+            if record.result == "L":
+                losses += 1
+        
     # Renders the request, the detail template and passes the team variable through
-    return render(request, 'teams/detail.html', {'team': team})
+    return render(request, 'teams/detail.html', {
+        'team': team,
+        'wins': wins,
+        'losses': losses,
+        })
 
 class TeamCreate(CreateView):
     model = Team

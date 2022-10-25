@@ -15,6 +15,27 @@
             </div>
         </div>
     </div>
+    <div class="col s6">
+        <table class="striped">
+          <thead>
+            <tr>
+                <th>Record: {{ wins }}-{{ losses }}</th>
+            </tr>
+            <tr>
+              <th>Week</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in team.record_set.all %}
+            <tr>
+              <td>{{record.week}}</td>
+              <td>{{record.get_result_display}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
 </div>
 
 {% endblock %}
