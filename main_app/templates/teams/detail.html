@@ -50,11 +50,13 @@
 <div class="row">
     <div class="col s6">
         <h3>{{ team.name }}'s Players</h3>
+        <!-- Loops through the players if they are present -->
         {% if team.players.count %} {% for player in team.players.all %}
         <div class="card">
             <a href="{% url 'players_detail' player.id %}">
                 <div class="card-content">
                     <span class="card-title">
+                        <!-- Prints name, position and associated team to page -->
                         Player: {{ player.name }} </br>
                         Position: {{ player.position }} </br>
                         NFL Team: {{ player.nfl_team}} </br>
@@ -68,17 +70,20 @@
     </div>
     <div class="col s6">
         <h3>Available Players</h3>
+        <!-- If other players exist -->
         {% if players.count %}
             {% for player in players.all %}
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">
+                             <!-- Prints name, position and associated team to page -->
                             Player: {{ player.name }} </br>
                             Position: {{ player.position }} </br>
                             NFL Team: {{ player.nfl_team}} </br>
                         </span>
                     </div>
                     <div class="card-action">
+                        <!-- Attacks this url upon submission -->
                         <form action="{% url 'assoc_player' team.id player.id %}" method="post">
                             {% csrf_token %}
                             <button type="submit" class="btn">Add</button>
@@ -92,6 +97,7 @@
     </div>
 </div>
 <script>
+    // Selects the result and allows it to be a dropdown of choices
     var selectEl = document.getElementById('id_result');
     M.FormSelect.init(selectEl);
 </script>
