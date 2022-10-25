@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .forms import RecordForm
 
-from .models import Record, Team
+from .models import Player, Record, Team
 
 # Create your views here.
 # Renders the home page by connecting to the home.html template
@@ -33,6 +33,8 @@ def teams_detail(request, team_id):
     records = Record.objects.all()
     # Allows for us to use the form in our detail template
     record_form = RecordForm()
+    # Get players that are not on team
+    players_not_on_team = Player.objects.exclude(id__in = team.players.all().values_list('id'))
 
     # Goes through the records for the team and tallies wins and losses
     for record in records:
@@ -48,6 +50,7 @@ def teams_detail(request, team_id):
         'wins': wins,
         'losses': losses,
         'record_form': record_form,
+        'players': players_not_on_team,
         })
 
 def add_game(request, team_id):

@@ -49,13 +49,36 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title">
-                    Name: {{ player.name }}
+                    Player: {{ player.name }}
                     Position: {{ player.position }}
                 </span>
             </div>
         </div>
         {% endfor %}{% else %}
         <h5>No Players on Roster</h5>
+        {% endif %}
+    </div>
+    <div class="col s6">
+        <h3>Available Players</h3>
+        {% if players.count %}
+            {% for player in players.all %}
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            Player: {{ player.name }}
+                            Position: {{ player.position }}
+                        </span>
+                    </div>
+                    <div class="card-action">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">Add</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+        <h5>{{ team.name }} already have all the players available</h5>
         {% endif %}
     </div>
 </div>
