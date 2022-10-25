@@ -1,5 +1,3 @@
-from email.policy import default
-from tkinter import CASCADE
 from django.urls import reverse
 from django.db import models
 from django.contrib.auth.models import User
