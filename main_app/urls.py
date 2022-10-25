@@ -11,5 +11,7 @@ urlpatterns = [
     path('myteams/<int:pk>/update/', views.TeamUpdate.as_view(), name='teams_update'),
     path('myteams/<int:pk>/delete/', views.TeamDelete.as_view(), name='teams_delete'),
     path('myteams/<int:team_id>/add_game/', views.add_game, name='add_game'),
-    path('myteams/<int:team_id>assoc_player/<int:player_id>/', views.assoc_player, name='assoc_player')
+    path('myteams/<int:team_id>assoc_player/<int:player_id>/', views.assoc_player, name='assoc_player'),
+    path('players/', views.PlayerList.as_view(), name='players_index'),
+    path('players/<int:pk>/', views.PlayerDetail.as_view(), name='players_detail'),
 ]

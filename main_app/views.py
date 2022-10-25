@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .forms import RecordForm
@@ -79,6 +81,17 @@ class TeamDelete(DeleteView):
     model = Team
     success_url = '/myteams/'
 
+# Allows the player to be linked to the team
 def assoc_player(request, team_id, player_id):
     Team.objects.get(id=team_id).players.add(player_id)
     return redirect('detail', team_id=team_id)
+
+# Links model with index template
+class PlayerList(ListView):
+    model = Player
+    template_name = 'players/index.html'
+
+# Links model with detail template
+class PlayerDetail(DetailView):
+    model = Player
+    template_name = 'players/detail.html'
