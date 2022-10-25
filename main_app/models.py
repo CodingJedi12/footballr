@@ -23,6 +23,12 @@ class Player(models.Model):
         choices=POSITIONS,
         default=[0][0],
         )
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('player_detail', kwargs={'pk': self.id})
 
 # Team model
 class Team(models.Model):
