@@ -1,6 +1,8 @@
 from email.policy import default
+from tkinter import CASCADE
 from django.urls import reverse
 from django.db import models
+from django.contrib.auth.models import User
 
 # Provides choices 
 RESULTS = (
@@ -39,6 +41,7 @@ class Team(models.Model):
     name = models.CharField(max_length=50)
     league = models.CharField(max_length=50)
     players = models.ManyToManyField(Player)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     # Says its name
     def __str__(self):
