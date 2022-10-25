@@ -78,3 +78,7 @@ class TeamUpdate(UpdateView):
 class TeamDelete(DeleteView):
     model = Team
     success_url = '/myteams/'
+
+def assoc_player(request, team_id, player_id):
+    Team.objects.get(id=team_id).players.add(player_id)
+    return redirect('detail', team_id=team_id)
