@@ -6,16 +6,19 @@
     <div class="col s6">
         <div class="card">
             <div class="card-content">
+                <!-- Team name and league -->
                 <span class="card-title">{{ team.name }}</span>
                 <p>{{ team.league }}</p>
             </div>
             <div class="card-action">
+                <!-- Links to update and delete a team -->
                 <a href="{% url 'teams_update' team.id %}">Edit</a>
                 <a href="{% url 'teams_delete' team.id %}">Delete</a>
             </div>
         </div>
     </div>
     <div class="col s6">
+        <!-- Upon submission, attacks this url -->
         <form action="{% url 'add_game' team.id %}" method="post">
             {% csrf_token %} {{ record_form.as_p }}
             <input type="submit" class="btn" value="Add game">
@@ -23,6 +26,7 @@
         <table class="striped">
           <thead>
             <tr>
+                <!-- Keeps track of ongoing record -->
                 <th>Record: {{ wins }}-{{ losses }}</th>
             </tr>
             <tr>
@@ -33,6 +37,7 @@
           <tbody>
             {% for record in team.record_set.all %}
             <tr>
+                <!-- For each instance, prints week and Win/Loss to the page -->
               <td>{{record.week}}</td>
               <td>{{record.get_result_display}}</td>
             </tr>

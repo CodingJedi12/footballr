@@ -3,11 +3,13 @@
 {% block content %}
 
 <h1>Players</h1>
+<!-- Loops through the players object list -->
 {% for player in object_list %}
 <div class="card">
     <a href="{% url 'players_detail' player.id %}">
         <div class="card-content">
             <span class="card-title">
+                <!-- Prints name, position and associated team for each player -->
                 Player: {{ player.name }} </br>
                 Position: {{ player.position }} </br>
                 NFL Team: {{ player.nfl_team}}

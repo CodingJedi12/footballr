@@ -3,8 +3,10 @@
 {% block content %}
 
 {% if object %}
+<!-- If there is a player, then we can edit player -->
     <h1>Update {{ object.name }}</h1>
 {% else %}
+<!-- If no player, add one -->
     <h1>Add Player</h1>
 {% endif %}
 
@@ -16,6 +18,7 @@
     <input class="btn blue" type="submit" value="{% if object %} Update Player {% else %} Add Player {% endif %}">
 </form>
 <script>
+    // Allows us to have a dropdown selection for position
     var selectEl = document.getElementById('id_position');
     M.FormSelect.init(selectEl);
 </script>

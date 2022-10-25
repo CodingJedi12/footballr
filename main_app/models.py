@@ -17,7 +17,9 @@ POSITIONS = (
 )
 
 class Player(models.Model):
+    # Name and nfl_team are char fields
     name = models.CharField(max_length=50)
+    # Position is a char field that is a dropdown menu of the POSITIONS variable
     position = models.CharField(
         max_length=3,
         choices=POSITIONS,
