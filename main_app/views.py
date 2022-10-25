@@ -68,7 +68,7 @@ def add_game(request, team_id):
 # Creates a new team using the Team model and reroutes upon success
 class TeamCreate(CreateView):
     model = Team
-    fields = '__all__'
+    fields = ('name', 'league')
     success_url = '/myteams/'
 
 # Updates an existing team
