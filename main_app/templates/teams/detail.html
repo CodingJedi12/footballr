@@ -47,12 +47,15 @@
         <h3>{{ team.name }}'s Players</h3>
         {% if team.players.count %} {% for player in team.players.all %}
         <div class="card">
-            <div class="card-content">
-                <span class="card-title">
-                    Player: {{ player.name }}
-                    Position: {{ player.position }}
-                </span>
-            </div>
+            <a href="{% url 'players_detail' player.id %}">
+                <div class="card-content">
+                    <span class="card-title">
+                        Player: {{ player.name }} </br>
+                        Position: {{ player.position }} </br>
+                        NFL Team: {{ player.nfl_team}} </br>
+                    </span>
+                </div>
+            </a>
         </div>
         {% endfor %}{% else %}
         <h5>No Players on Roster</h5>
@@ -65,8 +68,9 @@
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">
-                            Player: {{ player.name }}
-                            Position: {{ player.position }}
+                            Player: {{ player.name }} </br>
+                            Position: {{ player.position }} </br>
+                            NFL Team: {{ player.nfl_team}} </br>
                         </span>
                     </div>
                     <div class="card-action">

@@ -86,6 +86,19 @@ def assoc_player(request, team_id, player_id):
     Team.objects.get(id=team_id).players.add(player_id)
     return redirect('detail', team_id=team_id)
 
+
+class PlayerCreate(CreateView):
+    model = Player
+    fields = ('name', 'position', 'nfl_team')
+
+class PlayerUpdate(UpdateView):
+    model = Player
+    fields = ('name', 'position', 'nfl_team')
+
+class PlayerDelete(DeleteView):
+    model = Player
+    success_url = '/players'
+    
 # Links model with index template
 class PlayerList(ListView):
     model = Player
