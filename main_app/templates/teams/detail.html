@@ -7,8 +7,8 @@
         <div class="card">
             <div class="card-content">
                 <!-- Team name and league -->
-                <span class="card-title">{{ team.name }}</span>
-                <p>{{ team.league }}</p>
+                <span class="card-title deep-orange-text text-accent-4">{{ team.name }}</span>
+                <p class="deep-orange-text text-accent-4">{{ team.league }}</p>
             </div>
             <div class="card-action">
                 <!-- Links to update and delete a team -->
@@ -77,9 +77,9 @@
                     <div class="card-content">
                         <span class="card-title">
                              <!-- Prints name, position and associated team to page -->
-                            Player: {{ player.name }} </br>
-                            Position: {{ player.position }} </br>
-                            NFL Team: {{ player.nfl_team}} </br>
+                            <p class="deep-orange-text text-accent-4">Player: {{ player.name }}</p>
+                            <p class="deep-orange-text text-accent-4">Position: {{ player.position }}</p>
+                            <p class="deep-orange-text text-accent-4">NFL Team: {{ player.nfl_team}}</p>
                         </span>
                     </div>
                     <div class="card-action">

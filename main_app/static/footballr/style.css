@@ -1,10 +1,12 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    list-style-type: square;
 }
 
 body {
-    background-color: whitesmoke;
+    color: white;
+    background-color: #013369;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -19,7 +21,5 @@ padding-top: 0;
 text-align: right;
 }
 
-.navbar-fixed {
-    background-color: black;
-}
+
   
