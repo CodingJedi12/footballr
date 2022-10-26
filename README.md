@@ -9,6 +9,7 @@ With Footballr, keep up to date with your teams, like a good manager should. Foo
 - Python
 - Django 
 - Heroku
+- SQL/PSQL
 - Materialize CSS
 - HTML
 
